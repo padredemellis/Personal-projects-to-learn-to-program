@@ -12,6 +12,10 @@ def create_app():
     from . import main
     app.register_blueprint(main.bp)
     
+    from . import auth
+    app.register_blueprint (auth.bp)
+
+    
     @app.route('/')
     def index():
         return "<h1>The Tasks Trophy<h1>"

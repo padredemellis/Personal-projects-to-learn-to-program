@@ -1,4 +1,4 @@
-#!/root/Personal-projects-to-learn-to-program/TTT(THE_TASKS_TROPHY)/pdm/bin/python3
+#!/home/padreDeMellis/Personal-projects-to-learn-to-program/TTT(THE_TASKS_TROPHY)/pdm/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

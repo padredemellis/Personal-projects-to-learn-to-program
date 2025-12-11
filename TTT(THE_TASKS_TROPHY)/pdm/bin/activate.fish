@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV '/root/Personal-projects-to-learn-to-program/TTT(THE_TASKS_TROPHY)/pdm'
+set -gx VIRTUAL_ENV '/home/padreDeMellis/Personal-projects-to-learn-to-program/TTT(THE_TASKS_TROPHY)/pdm'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
