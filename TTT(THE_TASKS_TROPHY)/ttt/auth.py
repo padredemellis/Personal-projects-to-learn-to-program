@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, request, url_for, redirect, flash
+    Blueprint, render_template, request, url_for, redirect, flash, session, g
     )
 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -31,6 +31,38 @@ def register():
         flash(error)
     return render_template("auth/register.html")
 
-@bp.route('/login')
+@bp.route('/login', methods = ('GET', 'POST'))
 def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        
+
+        error = None
+        #Validar datos
+
+        user = User.query.filter_by(username = username).first()
+
+        if user == None:
+            error = 'Nombre de usuario incorrecto'
+        elif not check_password_hash(user.password, password):
+            error = 'Contraseña incorrecta'
+
+        # Iniciar sesion
+        if error is None:
+            session.clear()
+            session['user_id'] = user.id
+            return redirect(url_for('ttt.index'))
+        
+        flash(error)
     return render_template("auth/login.html")
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+
+    if user_id == None:
+        g.user = None
+    else:
+        g.user = User.query.get_or_404(user_id)
