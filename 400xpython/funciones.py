@@ -19,7 +19,7 @@ def EscribirCentrado(texto: str) -> str:
         raise ValueError("Algo malió sal")
     return f"{espacios_vacios}{texto}{espacios_vacios}\n{espacios_vacios}{subrayado}{espacios_vacios}"
 
-texto: str = input("A ver...escribe algo")
+texto: str = input("A ver...escribe algo\n")
 print(EscribirCentrado(texto))
 print("\n")
 '''
