@@ -42,10 +42,33 @@ máxima y mínima.
 Crear un programa principal, que utilizando la función anterior, vaya pidiendo la 
 temperatura máxima y mínima de cada día y vaya mostrando la media.  
 El programa pedirá el número de días que se van a introducir. 
+'''
+def temperaturaDelDia(max: float, min: float) -> float:
+    return (max + min) / 2
+
+def main(numDias:int):
+    resultados:list = []
+    for dia in range(numDias):
+        temperaturaMax: float = float(input("Ingresa la termperatura maxima:\t"))
+        temperaturaMin: float = float(input("Ingresa la termperatura minima:\t"))
+        media: float = temperaturaDelDia(temperaturaMax, temperaturaMin)
+        resultados.append(f"el dia {dia + 1} se registro una temperatura media de {media} grados")
+    return "\n".join(resultados)
+
+numDias: int = int(input("ingresa el numero de dias:\t"))
+print(main(numDias))
+
+'''
 17)Crea un función “ConvertirEspaciado”, que reciba como parámetro un texto y devuelve una 
 cadena con un espacio adicional tras cada letra.  
 Por ejemplo, “Hola, tú” devolverá “H o l a , t ú “. Crea un programa principal donde se use 
 dicha función. 
+'''
+def ConvertirEspaciado(texto:str)->str:
+    
+
+'''
+
 18)Crea una función “calcularMaxMin” que recibe una lista con valores numéricos y devuelve 
 el valor máximo y el mínimo.  
 Crea un programa que pida números por teclado y muestre el máximo y el mínimo, 
