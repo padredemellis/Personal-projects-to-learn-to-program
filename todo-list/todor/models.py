@@ -15,7 +15,7 @@ class User(db.Model):
         self.password = password
     
     def __repr__(self):
-        return f"<User: {self.username >}"  #representamos por el nombre de usuario
+        return f"<User: {self.username}>"  #representamos por el nombre de usuario
 # Clase que representa la tabla 'todos' en la base de datos  
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key = True)

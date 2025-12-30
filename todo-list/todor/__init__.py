@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from . import todo
-from . import auth
+
 
 #crear una instancia o extension de sql-alchemy
 db = SQLAlchemy()
@@ -14,7 +13,8 @@ def create_app():
      SECRET_KEY='dev',
      SQLALCHEMY_DATABASE_URI = "sqlite:///todolist.db"
     )
-
+    from . import todo
+    from . import auth
     
     db.init_app(app) #Con esto inicializamos la conexion con nuestra base de datos
 

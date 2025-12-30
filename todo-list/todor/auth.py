@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template
-from . import models
+from flask import Blueprint, render_template, request, url_for, redirect, flash
+from .models import User
+from werkzeug.security import generate_password_hash, check_password_hash
+from todor import db
 '''
 **¿Qué contiene?** Toda la lógica de **autenticación de usuarios**.
 
@@ -14,8 +16,24 @@ from . import models
 '''
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-@bp.route('/register')
+@bp.route('/register', methods = ('GET', 'POST'))
 def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        user = User(username, generate_password_hash(password))
+
+        user_name = User.query.filter_by(username = username).first()
+
+        if user_name is None:
+            db.session.add(user)
+            db.session.commit()
+
+            return redirect(url_for('auth.login'))
+        else:
+            flash(f"Ese nombre {username} ya existe. Prueba con otro", "error")
+
     return render_template('auth/register.html')
 
 @bp.route('/login', methods=['GET', 'POST'])
