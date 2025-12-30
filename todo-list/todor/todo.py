@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from todor.auth import login_required
 '''
 **Desglose de cada importación:**
 - `Blueprint` → Para crear el blueprint
@@ -13,8 +14,9 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 bp = Blueprint('todo', __name__, url_prefix='/todo')
 
 @bp.route('/list')
+@login_required
 def index():
-    return "Lista de tareas"
+    return render_template("todo/index.html")
 
 @bp.route('/create')
 def create():
